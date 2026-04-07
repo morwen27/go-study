@@ -6,14 +6,14 @@ import (
 )
 
 type Bin struct {
-	id        string
-	private   bool
-	createdAt time.Time
-	name      string
+	Id        string    `json:"id"`
+	Private   bool      `json:"private"`
+	CreatedAt time.Time `json:"creationDate"`
+	Name      string    `json:"name"`
 }
 
 type BinList struct {
-	bins []*Bin
+	Bins []*Bin `json:"bins"`
 }
 
 func ConstructBin(id string, name string, private bool) (*Bin, error) {
@@ -21,10 +21,10 @@ func ConstructBin(id string, name string, private bool) (*Bin, error) {
 		return nil, errors.New("Id or name can't be empty")
 	}
 	bin := Bin{
-		id:        id,
-		name:      name,
-		createdAt: time.Now(),
-		private:   private,
+		Id:        id,
+		Name:      name,
+		CreatedAt: time.Now(),
+		Private:   private,
 	}
 
 	return &bin, nil
@@ -33,7 +33,7 @@ func ConstructBin(id string, name string, private bool) (*Bin, error) {
 func ConstructBinList(bins []*Bin) *BinList {
 	slice := make([]*Bin, 0)
 	binList := BinList{
-		bins: append(slice, bins...),
+		Bins: append(slice, bins...),
 	}
 
 	return &binList
