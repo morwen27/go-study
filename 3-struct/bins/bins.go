@@ -30,7 +30,11 @@ func ConstructBin(id string, name string, private bool) (*Bin, error) {
 	return &bin, nil
 }
 
-func ConstructBinList(bins []*Bin) *BinList {
+func ConstructBinList() *BinList {
+	return &BinList{}
+}
+
+func AddBin(bins []*Bin) *BinList {
 	slice := make([]*Bin, 0)
 	binList := BinList{
 		Bins: append(slice, bins...),
