@@ -7,9 +7,20 @@ import (
 	"work-with-bins/bins"
 )
 
-var fileName = "binlist.json"
+var fileName = ""
 
-func InitFileStorage() {
+type Storage interface {
+	InitStorage()
+	SaveList(*bins.BinList)
+	ReadList() ([]byte, error)
+}
+
+type FileStorage struct {
+	fileName string
+}
+
+func InitStorage(name string) {
+	fileName = name
 	_, checkExistingError := os.Stat(fileName)
 
 	if os.IsNotExist(checkExistingError) {

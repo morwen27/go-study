@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-	storage.InitFileStorage()
+	storage.InitStorage("binlist.json")
 }
