@@ -7,7 +7,7 @@ import (
 )
 
 type Config struct {
-	key string
+	Key string
 }
 
 func InitConfig() *Config {

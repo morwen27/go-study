@@ -9,11 +9,7 @@ type CloudStorage struct {
 	url string
 }
 
-var appConfig config.Config
-
-func Init(path string) *CloudStorage {
-	appConfig = *config.InitConfig()
-
+func Init(path string, config *config.Config) *CloudStorage {
 	return &CloudStorage{
 		url: path,
 	}
