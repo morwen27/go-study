@@ -2,13 +2,18 @@ package api
 
 import (
 	"work-with-bins/bins"
+	"work-with-bins/config"
 )
 
 type CloudStorage struct {
 	url string
 }
 
+var appConfig config.Config
+
 func Init(path string) *CloudStorage {
+	appConfig = *config.InitConfig()
+
 	return &CloudStorage{
 		url: path,
 	}

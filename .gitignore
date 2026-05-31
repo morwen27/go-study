@@ -7,3 +7,4 @@ go-demo-5/*
 playground/*
 .DS_*
 3-struct/binlist.json
+3-struct/.env
