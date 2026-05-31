@@ -10,6 +10,11 @@ import (
 	"strings"
 )
 
+type OperationSet struct {
+	handler func([]int) float64
+	message string
+}
+
 func main() {
 	defer func() {
 		if r := recover(); r != nil {
@@ -23,14 +28,14 @@ func main() {
 }
 
 func getOperationResult(operation string, operands []int) {
-	switch strings.ToLower(operation) {
-	case "avg":
-		fmt.Printf("Среднее арифметическое %v для равно: %.2f\n", operands, getAvarage(operands))
-	case "sum":
-		fmt.Printf("Сумма всех чисел из %v равна: %.2f\n", operands, getSum(operands))
-	case "med":
-		fmt.Printf("Медиана для %v равна: %.2f\n", operands, getMedium(operands))
+	operationsMap := map[string]OperationSet{
+		"avg": {handler: getAvarage, message: "Среднее арифметическое %v для равно: %.2f\n"},
+		"sum": {handler: getSum, message: "Сумма всех чисел из %v равна: %.2f\n"},
+		"med": {handler: getMedium, message: "Медиана для %v равна: %.2f\n"},
 	}
+
+	result := operationsMap[operation].handler(operands)
+	fmt.Printf(operationsMap[operation].message, operands, result)
 }
 
 func getMedium(operands []int) float64 {
